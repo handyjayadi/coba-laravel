@@ -31,6 +31,12 @@ Route::get('/about', function () {
 
 Route::get('/blog', function () {
     return view('blog',[
-        "title" => "blog"
+        "title" => "blog",
+        "nama" => "rian",
+        "umur" => "111",
+
     ]);
+});
+Route::get('/sbadmin2',function(){
+    return view('sbadmin2');
 });

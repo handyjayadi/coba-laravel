@@ -5,18 +5,11 @@
 <h3>
 
 </h3>
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <td>nama</td>
-        <td>umur</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{$nama}}</td>
-        <td>{{$umur}}</td>
-    </tr>
-    </tbody>
-</table>
+@foreach ($posts as $p)
+<article class="mb-5">
+    <h2>judul :{{$p ["title"]}}</h2>
+    <h5>Author : {{$p ["author"]}}</h5>
+    <p>{{$p["body"]}}</p>
+@endforeach
+</article>
 @endsection

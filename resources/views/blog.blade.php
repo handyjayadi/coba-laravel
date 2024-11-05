@@ -7,8 +7,7 @@
 </h3>
 @foreach ($posts as $p)
 <article class="mb-5">
-    <h2>judul :{{$p ["title"]}}</h2>
-    <h5>Author : {{$p ["author"]}}</h5>
+    <a href="/blog/{{$p["slug"]}}"><h2>judul :{{$p ["title"]}}</h2></a>
     <p>{{$p["body"]}}</p>
 @endforeach
 </article>

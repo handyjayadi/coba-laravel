@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProdukController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Category;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,30 +33,51 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', function () {
+Route::get('/blog',[PostController::class,'index'] );
+
+Route::get('/blog/{post:id}',[PostController::class,'detail']);
+
+Route::get('/categories/{category:id}',function(Category $category){
     return view('blog',[
-        "title" => "blog",
-        "posts" => Post::all()
-
+        'title'=>"Category By : $category->name",
+        'posts'=>$category->posts->load('category','user'),
+        'category'=>$category->name
     ]);
 });
-Route::get('/sbadmin2',function(){
-    return view('sbadmin2');
-});
-
-
-
-Route::get('/blog/{slug}',function($slug){
-    
-    return view('post',[
-        "title" =>"single-post",
-        "post" => Post::find($slug)
+Route::get('/author/{user:username}',function(User $user){
+    return view('blog',[
+        'title'=>"Author By : $user->name",
+        'posts'=>$user->posts->load('category','user'),
+        'user'=>$user->name
     ]);
 });
+
+
+Route::get('/categories',function(){
+    return view('categories',[
+        'title'=>'Post category',
+        'categories'=>Category::all()
+    ]);
+});
+
+
+Route::get('/authors',function(){
+    return view('authors',[
+        'title'=>'Post Authors',
+        'authors'=>User::all()
+    ]);
+});
+
+
+
 
 Route::get('/admin/user',function(){
-    return view('/admin/user');
+    return view('/admin/user',['title'=>'atmin']);
 });
 Route::get('/admin/history',function(){
     return view('/admin/history');
+});
+
+Route::get('/produk',function(){
+    return view('/produk');
 });

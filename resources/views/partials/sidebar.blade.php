@@ -75,6 +75,16 @@
                     <span>User</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link " href="/categories">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>kategori</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/authors">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>author</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link " href="/admin/history">
                     <i class="fas fa-fw fa-table"></i>
                     <span>History</span></a>

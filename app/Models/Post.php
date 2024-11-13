@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Post extends Model
 {
@@ -21,5 +22,15 @@ class Post extends Model
     public function user(){
         
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilter($query, array $filters){
+
+        if(isset($filters['search']) ? $filters['search'] : false) 
+            {
+               return $query->where('title','like','%'. $filters['search'] . '%')
+                            ->orWhere('excerpt','like','%'. $filters['search'] . '%');
+            }
+
     }
 }

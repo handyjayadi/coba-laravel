@@ -9,8 +9,7 @@
         {
             return view('blog',[
                 "title" => "All Blog",
-                // "posts" => Post::all()
-                "posts" => Post::latest()->get()
+                "posts" => Post::latest()->filter(request(['search']))->paginate(4)->withQueryString()
             ]);
         }
         public function detail(Post $post){

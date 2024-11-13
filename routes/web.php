@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProdukController;
 use App\Models\Post;
-use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Database\Eloquent\Collection;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +55,11 @@ Route::get('/author/{user:username}',function(User $user){
     ]);
 });
 
+Route::get('/login' ,[LoginController::class,'index']);
+
+Route::get('/login/register',[RegisterController::class,'index']);
+
+Route::post('/login/register',[RegisterController::class,'store']);
 
 Route::get('/categories',function(){
     return view('categories',[
